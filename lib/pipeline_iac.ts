@@ -20,10 +20,16 @@ export class PipelineIac extends cdk.Stack {
 					"main",
 					{ connectionArn: codearn}
 				),
-				//installCommands: ["npm install -g aws-cdk"],
-				commands: ["docker version"]
+				installCommands: [
+                        'npm install -g aws-cdk'
+                    ],
+                commands: [
+                    'npm ci',
+                    'npm run build',
+                    'npx cdk synth'
+                ]
 			}),
-			selfMutation: false
+			//selfMutation: false
 		});
     }
 }
