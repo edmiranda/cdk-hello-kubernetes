@@ -7,6 +7,9 @@ import { KubectlV27Layer } from '@aws-cdk/lambda-layer-kubectl-v27';
 export class StackIaC extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
+    
+    const account = props?.env?.account!;
+    const region = props?.env?.region!;
 
     // get VPC
     const tagName = 'vpc-secondary-cidr' // passed from construct stack props but using fixed value for example
@@ -41,7 +44,7 @@ export class StackIaC extends cdk.Stack {
     });
     
     // adding access for iam role admin
-    const admin = iam.Role.fromRoleArn(this, 'Role', `arn:aws:iam::${process.env.CDK_DEFAULT_ACCOUNT}:role/admin`, {
+    const admin = iam.Role.fromRoleArn(this, 'Role', `arn:aws:iam::${account}:role/admin`, {
       mutable: false,
     });
     
