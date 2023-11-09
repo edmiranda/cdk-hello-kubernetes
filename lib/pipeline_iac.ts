@@ -32,7 +32,7 @@ export class PipelineIac extends cdk.Stack {
                 ],
                 role: role
 			}),
-			selfMutation: false
+			selfMutation: true
 		});
     }
 }
