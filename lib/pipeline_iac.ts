@@ -20,13 +20,10 @@ export class PipelineIac extends cdk.Stack {
 					"main",
 					{ connectionArn: codearn}
 				),
-				installCommands: [
-                        'npm install -g aws-cdk'
-                    ],
                 commands: [
-                    'npm ci',
-                    'npm run build',
-                    'npx cdk synth'
+                    'yarn install --frozen-lockfile',
+ 			        'yarn build',
+			        'npx cdk synth',
                 ]
 			}),
 			//selfMutation: false
